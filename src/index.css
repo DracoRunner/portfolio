@@ -1,0 +1,97 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base styles */
+body {
+    background-color: #fdfbf7;
+    color: #121212;
+    overflow-x: hidden;
+}
+
+/* Glass panel effect */
+.glass-panel {
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+/* Text stroke effect */
+.text-stroke {
+    -webkit-text-stroke: 1px #121212;
+    color: transparent;
+}
+
+/* Hover card effect */
+.hover-card {
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.hover-card:hover {
+    transform: translate(-4px, -4px);
+    box-shadow: 12px 12px 0px 0px rgba(18, 18, 18, 1);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #fdfbf7;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #121212;
+    border-radius: 4px;
+}
+
+/* Chart container */
+.chart-container {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    height: 300px;
+    max-height: 350px;
+}
+
+/* Ticker animation */
+.ticker-wrap {
+    width: 100%;
+    overflow: hidden;
+}
+
+.ticker {
+    display: flex;
+    white-space: nowrap;
+    animation: ticker 20s linear infinite;
+}
+
+@keyframes ticker {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* Selection colors */
+::selection {
+    background-color: #ccff00;
+    color: #121212;
+}
+
+/* 3D Canvas container */
+#canvas-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: -1;
+    opacity: 0.6;
+}
