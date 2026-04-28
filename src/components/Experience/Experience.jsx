@@ -1,157 +1,69 @@
-import { useState, useEffect, useRef } from 'react';
-import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
-import { Bar } from 'react-chartjs-2';
-import { experienceData } from '../../data/portfolioData';
-
-// Register Chart.js components
-ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
-
-// Role item component
-const RoleItem = ({ item, isActive, onClick }) => (
-    <div
-        onClick={onClick}
-        className={`p-6 border-2 border-charcoal rounded-2xl cursor-pointer transition-all duration-300 hover:bg-gray-50 ${isActive ? 'bg-charcoal text-white ring-4 ring-lime-acid/30' : 'bg-white text-charcoal'
-            }`}
-    >
-        <div className="flex justify-between items-center">
-            <div>
-                <h4 className={`font-bold text-lg ${isActive ? 'text-lime-acid' : 'text-charcoal'}`}>
-                    {item.role}
-                </h4>
-                <p className="text-sm font-mono opacity-80">{item.company}</p>
-            </div>
-            <div className="text-2xl opacity-0 group-hover:opacity-100 transition-opacity">→</div>
-        </div>
-    </div>
-);
-
-// Detail card component
-const DetailCard = ({ experience, isAnimating }) => {
-    const chartData = {
-        labels: experience.impactLabels,
-        datasets: [
-            {
-                label: 'Impact Metric (%)',
-                data: experience.impactData,
-                backgroundColor: [
-                    experience.color === '#FDFBF7' ? '#121212' : experience.color,
-                    '#121212'
-                ],
-                borderColor: '#121212',
-                borderWidth: 2,
-                borderRadius: 8,
-                barPercentage: 0.6
-            }
-        ]
-    };
-
-    const chartOptions = {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-            legend: { display: false },
-            tooltip: {
-                backgroundColor: '#121212',
-                titleColor: '#CCFF00',
-                padding: 10,
-                titleFont: { family: 'Space Grotesk' },
-                bodyFont: { family: 'Inter' }
-            }
-        },
-        scales: {
-            y: {
-                beginAtZero: true,
-                max: 100,
-                grid: { display: false }
-            },
-            x: {
-                grid: { display: false },
-                ticks: { font: { family: 'Inter', weight: '600' } }
-            }
-        }
-    };
-
-    return (
-        <div
-            className={`bg-clay border-2 border-charcoal rounded-3xl p-8 shadow-neo transition-all duration-300 ${isAnimating ? 'opacity-50 translate-y-2' : 'opacity-100 translate-y-0'
-                }`}
-        >
-            <span className="font-mono text-xs font-bold bg-charcoal text-white px-2 py-1 rounded mb-4 inline-block">
-                {experience.period}
-            </span>
-
-            <h3 className="font-grotesk text-3xl font-bold leading-tight mb-1">
-                {experience.role}
-            </h3>
-
-            <p className="text-lg text-gray-500 font-bold mb-6">
-                {experience.company} • {experience.location}
-            </p>
-
-            <p className="text-gray-700 mb-8 leading-relaxed">
-                {experience.desc}
-            </p>
-
-            {/* Chart Container */}
-            <div className="bg-white rounded-xl p-4 border border-gray-200">
-                <h4 className="text-xs font-bold uppercase tracking-wider mb-2 text-gray-400">
-                    Key Impact Metrics
-                </h4>
-                <div className="chart-container h-48">
-                    <Bar data={chartData} options={chartOptions} />
-                </div>
-            </div>
-        </div>
-    );
-};
+import React, { useState } from 'react';
+import { experienceContent } from '../../content/portfolioContent';
 
 const Experience = () => {
-    const [activeIndex, setActiveIndex] = useState(0);
-    const [isAnimating, setIsAnimating] = useState(false);
+  const [activeTab, setActiveTab] = useState(0);
 
-    const handleRoleClick = (index) => {
-        if (index === activeIndex) return;
+  return (
+    <section className="sec sec-alt border-b border-[var(--border)] px-6 md:px-16 py-24" id="experience">
+      <div className="sec-header mb-14 reveal">
+        <div className="inline-block text-[0.7rem] font-bold tracking-[0.2em] uppercase bg-[var(--green)] text-[var(--ink)] px-3 py-1 rounded-[4px] mb-5">
+          {experienceContent.eyebrow}
+        </div>
+        <h2 className="sec-h2-font text-[clamp(2rem,4vw,3.2rem)] mb-4">{experienceContent.title}</h2>
+        <p className="text-[1.05rem] leading-[1.78] text-[var(--ink-2)] max-w-[580px]">{experienceContent.intro}</p>
+      </div>
 
-        setIsAnimating(true);
-        setTimeout(() => {
-            setActiveIndex(index);
-            setIsAnimating(false);
-        }, 300);
-    };
+      <div className="grid grid-cols-1 lg:grid-cols-[260px_1fr] gap-6 mt-14 reveal">
+        <div className="flex flex-col gap-1.5">
+          {experienceContent.items.map((item, i) => (
+            <button 
+              key={i} 
+              className={`text-left p-4 md:px-5 md:py-4.5 rounded-[var(--radius)] border-[1.5px] transition-all ${activeTab === i ? "bg-[var(--ink)] border-[var(--ink)]" : "border-transparent hover:bg-[var(--bg-alt)]"}`}
+              onClick={() => setActiveTab(i)}
+            >
+              <div className={`exp-tab-role-font text-[0.9rem] mb-1 ${activeTab === i ? "text-[var(--green)]" : "text-[var(--ink)]"}`}>
+                {item.role}
+              </div>
+              <div className={`text-[0.75rem] ${activeTab === i ? "text-white/45" : "text-[var(--ink-3)]"}`}>
+                {item.company}
+              </div>
+            </button>
+          ))}
+        </div>
 
-    return (
-        <section id="experience" className="py-20 bg-white border-y border-charcoal">
-            <div className="px-6 md:px-12 lg:px-24 max-w-7xl mx-auto">
-                <div className="flex flex-col md:flex-row gap-12">
-                    {/* Left: Role List */}
-                    <div className="w-full md:w-1/2">
-                        <h2 className="font-grotesk text-5xl font-bold mb-10">
-                            CAREER <br /> TIMELINE
-                        </h2>
-
-                        <div className="space-y-4">
-                            {experienceData.map((item, index) => (
-                                <RoleItem
-                                    key={item.id}
-                                    item={item}
-                                    isActive={index === activeIndex}
-                                    onClick={() => handleRoleClick(index)}
-                                />
-                            ))}
-                        </div>
-                    </div>
-
-                    {/* Right: Details & Viz */}
-                    <div className="w-full md:w-1/2 sticky top-24 h-fit">
-                        <DetailCard
-                            experience={experienceData[activeIndex]}
-                            isAnimating={isAnimating}
-                        />
-                    </div>
-                </div>
+        <div>
+          {experienceContent.items.map((item, i) => (
+            <div key={i} className={`p-10 bg-white border border-[var(--border)] rounded-[var(--radius)] ${activeTab === i ? "block" : "hidden"}`}>
+              <div className="inline-flex px-3.5 py-1 bg-[var(--green)] rounded-full text-[0.72rem] font-bold text-black mb-6">
+                {item.period}
+              </div>
+              <div className="exp-title-font text-[clamp(1.4rem,2.5vw,1.9rem)] mb-1 text-[var(--ink)]">
+                {item.role}
+              </div>
+              <div className="text-[0.9rem] text-[var(--ink-3)] font-medium mb-5">
+                {item.company}
+              </div>
+              <div className="text-[0.96rem] leading-[1.8] text-[var(--ink-2)] mb-7">
+                {item.body}
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+                {item.kpis.map((kpi, j) => (
+                  <div key={j} className="p-4.5 bg-[var(--bg)] border border-[var(--border)] rounded-[10px]">
+                    <div 
+                      className="exp-kpi-val-font text-[1.5rem] mb-1 text-[var(--ink)]"
+                      dangerouslySetInnerHTML={{ __html: kpi.val }}
+                    />
+                    <div className="text-[0.78rem] text-[var(--ink-3)] leading-[1.45]">{kpi.desc}</div>
+                  </div>
+                ))}
+              </div>
             </div>
-        </section>
-    );
+          ))}
+        </div>
+      </div>
+    </section>
+  );
 };
 
 export default Experience;

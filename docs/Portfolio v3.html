@@ -1,0 +1,1514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mahendra Baghel | Engineering Lead</title>
+<meta name="description" content="Engineering Lead in Singapore. 9+ years building React, React Native, and Connected-TV applications for Paramount+, SBS On Demand, and Sky NZ.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<style>
+
+/* ── TOKENS ─────────────────────────────────── */
+:root {
+  --bg:        #f5f3ef;
+  --bg-alt:    #edeae4;
+  --bg-white:  #ffffff;
+  --ink:       #111111;
+  --ink-2:     #3d3d3d;
+  --ink-3:     #717171;
+  --green:     #b8ff4f;
+  --green-ink: #111;
+  --border:    #d8d4cc;
+  --radius:    14px;
+  --font-d:    'Syne', sans-serif;
+  --font-b:    'DM Sans', sans-serif;
+  --ease:      cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ── RESET ──────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-b);
+  background: var(--bg);
+  color: var(--ink);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.6;
+}
+a { color: inherit; text-decoration: none; }
+button { font: inherit; background: none; border: none; cursor: pointer; }
+
+/* ── NAV ────────────────────────────────────── */
+nav {
+  position: sticky;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(245,243,239,0.95);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.1rem 4rem;
+}
+.logo {
+  font-family: var(--font-d);
+  font-size: 1.05rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+}
+.nav-links a {
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--ink); }
+.nav-ctas { display: flex; gap: 0.5rem; }
+.btn-sm {
+  padding: 0.52rem 1.2rem;
+  border-radius: 100px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+.btn-sm-outline {
+  border: 1.5px solid var(--border);
+  color: var(--ink-2);
+}
+.btn-sm-outline:hover { border-color: var(--ink); color: var(--ink); }
+.btn-sm-solid {
+  background: var(--ink);
+  color: #fff;
+  transition: transform 0.2s var(--ease), box-shadow 0.2s;
+}
+.btn-sm-solid:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(0,0,0,0.18); }
+
+/* ── HERO ───────────────────────────────────── */
+.hero {
+  padding: 7rem 4rem 6rem;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+}
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 1rem;
+  border: 1.5px solid var(--border);
+  border-radius: 100px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--ink-2);
+  margin-bottom: 2.75rem;
+}
+.badge-dot {
+  width: 7px; height: 7px;
+  background: var(--green);
+  border-radius: 50%;
+  border: 1.5px solid #3d3d3d;
+  box-shadow: 0 0 0 3px rgba(184,255,79,0.3);
+  animation: pulse 2.2s ease infinite;
+  flex-shrink: 0;
+}
+.hero-name {
+  font-family: var(--font-d);
+  font-size: clamp(4rem, 10vw, 9.5rem);
+  font-weight: 800;
+  line-height: 0.93;
+  letter-spacing: -0.04em;
+  color: var(--ink);
+  margin-bottom: 3rem;
+}
+.hero-name .green-bg {
+  background: var(--green);
+  color: var(--green-ink);
+  padding: 0 0.18em;
+  border-radius: 6px;
+  display: inline-block;
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: end;
+  margin-bottom: 4rem;
+}
+.hero-role {
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--ink-2);
+  margin-bottom: 0.5rem;
+}
+.hero-desc {
+  font-size: 1.15rem;
+  line-height: 1.78;
+  color: var(--ink-2);
+  text-wrap: pretty;
+}
+.hero-desc strong { color: var(--ink); }
+.hero-ctas {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+.btn-lg {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 2rem;
+  border-radius: 100px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  transition: all 0.25s var(--ease);
+}
+.btn-lg-solid {
+  background: var(--ink);
+  color: #fff;
+}
+.btn-lg-solid:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(0,0,0,0.2); }
+.btn-lg-green {
+  background: var(--green);
+  color: #000;
+}
+.btn-lg-green:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(184,255,79,0.4); }
+.hero-right-text {
+  font-size: 0.88rem;
+  line-height: 1.75;
+  color: var(--ink-3);
+}
+.hero-right-text p + p { margin-top: 1rem; }
+
+/* Hero stat bar */
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid var(--border);
+  padding-top: 2.5rem;
+}
+.hstat {
+  padding-right: 2rem;
+  border-right: 1px solid var(--border);
+}
+.hstat:last-child { border-right: none; padding-left: 2rem; padding-right: 0; }
+.hstat:not(:first-child) { padding-left: 2rem; }
+.hstat-num {
+  font-family: var(--font-d);
+  font-size: 2.4rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  margin-bottom: 0.3rem;
+}
+.hstat-label {
+  font-size: 0.78rem;
+  color: var(--ink-3);
+  line-height: 1.4;
+}
+
+/* ── TICKER ─────────────────────────────────── */
+.ticker {
+  background: var(--ink);
+  padding: 0.875rem 0;
+  overflow: hidden;
+}
+.ticker-track {
+  display: flex;
+  width: max-content;
+  animation: ticker 30s linear infinite;
+}
+.ticker-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 0 1.75rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  white-space: nowrap;
+}
+.ticker-item.lit { color: rgba(255,255,255,0.9); }
+.tdot { width: 4px; height: 4px; background: var(--green); border-radius: 50%; flex-shrink: 0; }
+
+/* ── SECTION BASE ───────────────────────────── */
+.sec {
+  padding: 6rem 4rem;
+  border-bottom: 1px solid var(--border);
+}
+.sec-alt { background: var(--bg-alt); }
+.sec-white { background: var(--bg-white); }
+.sec-dark { background: var(--ink); color: #fff; }
+.sec-header { margin-bottom: 3.5rem; }
+.eyebrow {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: var(--green);
+  padding: 0.22rem 0.7rem;
+  border-radius: 4px;
+  margin-bottom: 1.25rem;
+}
+.sec-dark .eyebrow { color: #000; }
+.sec-h2 {
+  font-family: var(--font-d);
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  margin-bottom: 1rem;
+  text-wrap: pretty;
+}
+.sec-intro {
+  font-size: 1.05rem;
+  line-height: 1.78;
+  color: var(--ink-2);
+  max-width: 580px;
+  text-wrap: pretty;
+}
+.sec-dark .sec-intro { color: rgba(255,255,255,0.55); }
+
+/* ── STATS GRID ─────────────────────────────── */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.stat-box {
+  background: var(--bg-white);
+  padding: 2.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.stat-box-green { background: var(--green); }
+.stat-box-dark  { background: var(--ink); }
+.sbox-num {
+  font-family: var(--font-d);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--ink);
+}
+.stat-box-green .sbox-num { color: #000; }
+.stat-box-dark  .sbox-num { color: #fff; }
+.sbox-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--ink-3);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.stat-box-green .sbox-label { color: rgba(0,0,0,0.6); }
+.stat-box-dark  .sbox-label { color: rgba(255,255,255,0.45); }
+.sbox-body {
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: var(--ink-2);
+  margin-top: 0.25rem;
+}
+.stat-box-green .sbox-body { color: rgba(0,0,0,0.65); }
+.stat-box-dark  .sbox-body { color: rgba(255,255,255,0.5); }
+.sbox-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.5rem;
+}
+.sbox-chip {
+  padding: 0.22rem 0.6rem;
+  border-radius: 5px;
+  font-size: 0.72rem;
+  font-weight: 500;
+  background: rgba(0,0,0,0.06);
+  color: var(--ink-2);
+}
+.stat-box-dark .sbox-chip { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.7); }
+.stat-box-green .sbox-chip { background: rgba(0,0,0,0.1); color: rgba(0,0,0,0.7); }
+.platforms {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 0.5rem;
+}
+.ptag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.28rem 0.7rem;
+  border: 1.5px solid var(--border);
+  border-radius: 100px;
+  font-size: 0.74rem;
+  font-weight: 500;
+  color: var(--ink-2);
+}
+.ptag::before { content:''; width:6px; height:6px; border-radius:50%; background:var(--green); flex-shrink:0; }
+
+/* ── PROJECTS ───────────────────────────────── */
+.proj-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-top: 3rem;
+}
+.proj-row {
+  background: var(--bg-white);
+  padding: 2rem 2.5rem;
+  display: grid;
+  grid-template-columns: 60px 1fr auto;
+  gap: 2rem;
+  align-items: start;
+  cursor: pointer;
+  transition: background 0.18s;
+}
+.proj-row:hover { background: #fafaf8; }
+.proj-row-num {
+  font-family: var(--font-d);
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: var(--ink-3);
+  padding-top: 0.25rem;
+}
+.proj-row-main {}
+.proj-row-tag {
+  display: inline-flex;
+  padding: 0.2rem 0.65rem;
+  background: rgba(184,255,79,0.18);
+  border-radius: 4px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #3a5c00;
+  margin-bottom: 0.6rem;
+}
+.proj-row-title {
+  font-family: var(--font-d);
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.4rem;
+  color: var(--ink);
+}
+.proj-row-desc {
+  font-size: 0.9rem;
+  color: var(--ink-2);
+  line-height: 1.65;
+  max-width: 560px;
+  text-wrap: pretty;
+}
+.proj-row-year {
+  font-size: 0.78rem;
+  color: var(--ink-3);
+  white-space: nowrap;
+  padding-top: 0.25rem;
+  text-align: right;
+}
+.proj-row-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-top: 0.875rem;
+}
+.pchip {
+  padding: 0.2rem 0.55rem;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  font-size: 0.72rem;
+  color: var(--ink-3);
+}
+.proj-row-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px; height: 36px;
+  border: 1.5px solid var(--border);
+  border-radius: 50%;
+  color: var(--ink-3);
+  font-size: 0.9rem;
+  flex-shrink: 0;
+  margin-top: 0.2rem;
+  transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.2s var(--ease);
+}
+.proj-row:hover .proj-row-arrow {
+  background: var(--green);
+  border-color: var(--green);
+  color: #000;
+  transform: rotate(45deg);
+}
+.show-more-row {
+  background: var(--bg);
+  padding: 1.25rem 2.5rem;
+  text-align: center;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--ink-3);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  letter-spacing: 0.03em;
+}
+.show-more-row:hover { background: var(--bg-alt); color: var(--ink); }
+
+/* Case study modal */
+.cs-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--bg);
+  z-index: 9000;
+  overflow-y: auto;
+  transform: translateY(100%);
+  transition: transform 0.55s var(--ease);
+}
+.cs-overlay.open { transform: translateY(0); }
+.cs-topbar {
+  position: sticky;
+  top: 0;
+  background: rgba(245,243,239,0.95);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 4rem;
+  z-index: 10;
+}
+.cs-back {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--ink-2);
+  transition: color 0.15s;
+}
+.cs-back:hover { color: var(--ink); }
+.cs-close {
+  padding: 0.45rem 1.1rem;
+  background: var(--ink);
+  color: #fff;
+  border-radius: 100px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  transition: background 0.15s;
+}
+.cs-close:hover { background: #333; }
+.cs-body-wrap {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 5rem 2rem 6rem;
+}
+.cs-kicker {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  background: var(--green);
+  color: #000;
+  padding: 0.22rem 0.7rem;
+  border-radius: 4px;
+  margin-bottom: 1.5rem;
+}
+.cs-title {
+  font-family: var(--font-d);
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 1.04;
+  margin-bottom: 0.5rem;
+  color: var(--ink);
+}
+.cs-sub {
+  font-size: 1.1rem;
+  color: var(--ink-2);
+  margin-bottom: 3rem;
+  line-height: 1.6;
+}
+.cs-meta-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-bottom: 3rem;
+}
+.cs-meta-cell {
+  background: var(--bg-white);
+  padding: 1.25rem 1.5rem;
+}
+.cs-meta-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-bottom: 0.4rem;
+}
+.cs-meta-val {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+.cs-section-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin: 2.5rem 0 0.875rem;
+  display: block;
+}
+.cs-text {
+  font-size: 1rem;
+  line-height: 1.82;
+  color: var(--ink-2);
+  text-wrap: pretty;
+}
+.cs-bullets {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin: 0.5rem 0;
+}
+.cs-bullets li {
+  display: flex;
+  gap: 0.75rem;
+  font-size: 0.96rem;
+  color: var(--ink-2);
+  line-height: 1.7;
+  text-wrap: pretty;
+}
+.cs-bullets li::before {
+  content: '→';
+  color: var(--ink);
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 0.05em;
+}
+.cs-outcome {
+  padding: 1.5rem;
+  background: var(--ink);
+  color: #fff;
+  border-radius: var(--radius);
+  font-size: 1rem;
+  line-height: 1.75;
+  margin-top: 0.5rem;
+}
+.cs-outcome strong { color: var(--green); }
+.cs-chips-row { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-top: 0.5rem; }
+.cs-chip {
+  padding: 0.28rem 0.7rem;
+  border: 1.5px solid var(--border);
+  border-radius: 6px;
+  font-size: 0.78rem;
+  color: var(--ink-2);
+}
+
+/* ── EXPERIENCE ─────────────────────────────── */
+.exp-grid {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 1.5rem;
+  margin-top: 3.5rem;
+}
+.exp-tabs { display: flex; flex-direction: column; gap: 0.35rem; }
+.exp-tab {
+  text-align: left;
+  padding: 1.1rem 1.35rem;
+  border-radius: var(--radius-sm, 10px);
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+}
+.exp-tab:hover { background: var(--bg-alt); }
+.exp-tab.on {
+  background: var(--ink);
+  border-color: var(--ink);
+}
+.exp-tab-role {
+  font-family: var(--font-d);
+  font-size: 0.9rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  margin-bottom: 0.2rem;
+}
+.exp-tab.on .exp-tab-role { color: var(--green); }
+.exp-tab-co {
+  font-size: 0.75rem;
+  color: var(--ink-3);
+}
+.exp-tab.on .exp-tab-co { color: rgba(255,255,255,0.45); }
+.exp-panel {
+  display: none;
+  padding: 2.5rem;
+  background: var(--bg-white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+.exp-panel.on { display: block; }
+.exp-period {
+  display: inline-flex;
+  padding: 0.3rem 0.875rem;
+  background: var(--green);
+  border-radius: 100px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 1.5rem;
+}
+.exp-title {
+  font-family: var(--font-d);
+  font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+  margin-bottom: 0.25rem;
+}
+.exp-company {
+  font-size: 0.9rem;
+  color: var(--ink-3);
+  font-weight: 500;
+  margin-bottom: 1.25rem;
+}
+.exp-body {
+  font-size: 0.96rem;
+  line-height: 1.8;
+  color: var(--ink-2);
+  margin-bottom: 1.75rem;
+  text-wrap: pretty;
+}
+.exp-kpis {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.875rem;
+}
+.exp-kpi {
+  padding: 1.1rem;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+.exp-kpi-val {
+  font-family: var(--font-d);
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--ink);
+  line-height: 1;
+  margin-bottom: 0.3rem;
+}
+.exp-kpi-val em { color: #2a7c00; font-style: normal; }
+.exp-kpi-desc {
+  font-size: 0.78rem;
+  color: var(--ink-3);
+  line-height: 1.45;
+}
+
+/* ── SKILLS ─────────────────────────────────── */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-top: 3.5rem;
+}
+.sk-cat {
+  background: var(--bg-white);
+  padding: 2rem;
+}
+.sk-cat-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #000;
+  background: var(--green);
+  display: inline-block;
+  padding: 0.18rem 0.6rem;
+  border-radius: 4px;
+  margin-bottom: 1.1rem;
+}
+.sk-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.sk-chip {
+  padding: 0.32rem 0.75rem;
+  border-radius: 7px;
+  border: 1.5px solid var(--border);
+  font-size: 0.8rem;
+  color: var(--ink-2);
+  font-weight: 400;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+  cursor: default;
+}
+.sk-chip:hover {
+  background: var(--green);
+  border-color: var(--green);
+  color: #000;
+}
+
+/* ── CONTACT ────────────────────────────────── */
+.contact-sec {
+  background: var(--ink);
+  padding: 8rem 4rem 6rem;
+  border-bottom: none;
+}
+.contact-overline {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 1.75rem;
+}
+.contact-heading {
+  font-family: var(--font-d);
+  font-size: clamp(4rem, 10vw, 9rem);
+  font-weight: 800;
+  line-height: 0.93;
+  letter-spacing: -0.05em;
+  color: #fff;
+  margin-bottom: 4rem;
+}
+.contact-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 0.875rem;
+}
+.ccard {
+  padding: 1.5rem;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.09);
+  border-radius: var(--radius);
+  transition: background 0.2s, border-color 0.2s;
+  display: block;
+}
+.ccard:hover {
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.18);
+}
+.ccard-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  margin-bottom: 0.5rem;
+}
+.ccard-val {
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: rgba(255,255,255,0.85);
+  line-height: 1.45;
+}
+.ccard.avail .ccard-val {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--green);
+}
+.ccard.avail .ccard-val::before {
+  content: '';
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--green);
+  animation: pulse 2s ease infinite;
+  flex-shrink: 0;
+}
+
+/* ── FOOTER ─────────────────────────────────── */
+footer {
+  background: var(--ink);
+  border-top: 1px solid rgba(255,255,255,0.07);
+  padding: 1.75rem 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.28);
+}
+footer strong { color: rgba(255,255,255,0.55); }
+
+/* ── REVEAL ─────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+}
+.reveal.vis { opacity: 1; transform: none; }
+.d1 { transition-delay: 0.1s; }
+.d2 { transition-delay: 0.2s; }
+.d3 { transition-delay: 0.3s; }
+
+/* ── KEYFRAMES ──────────────────────────────── */
+@keyframes pulse {
+  0%,100% { box-shadow: 0 0 0 3px rgba(184,255,79,0.2); }
+  50%      { box-shadow: 0 0 0 6px rgba(184,255,79,0.06); }
+}
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ── RESPONSIVE ─────────────────────────────── */
+@media (max-width: 900px) {
+  nav { padding: 1rem 1.5rem; }
+  .nav-links { display: none; }
+  .hero { padding: 5rem 1.5rem 4rem; }
+  .hero-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .hero-stats { grid-template-columns: repeat(2, 1fr); }
+  .hstat:nth-child(2) { border-right: none; }
+  .hstat:nth-child(3) { padding-left: 0; border-right: 1px solid var(--border); padding-top: 1.5rem; }
+  .hstat:nth-child(4) { padding-top: 1.5rem; }
+  .sec { padding: 4.5rem 1.5rem; }
+  .stats-grid { grid-template-columns: 1fr; }
+  .exp-grid { grid-template-columns: 1fr; }
+  .exp-tabs { flex-direction: row; flex-wrap: wrap; }
+  .exp-tab { flex: 1; min-width: 130px; }
+  .skills-grid { grid-template-columns: 1fr; }
+  .contact-sec { padding: 5.5rem 1.5rem 4rem; }
+  footer { padding: 1.5rem; flex-direction: column; gap: 0.5rem; text-align: center; }
+  .proj-row { grid-template-columns: 40px 1fr; }
+  .proj-row-year { display: none; }
+  .cs-topbar { padding: 1rem 1.5rem; }
+  .cs-body-wrap { padding: 3.5rem 1.5rem 5rem; }
+  .cs-meta-row { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 560px) {
+  .hero-name { font-size: clamp(3.2rem, 16vw, 5rem); }
+  .hero-stats { grid-template-columns: 1fr 1fr; }
+  .exp-kpis { grid-template-columns: 1fr; }
+  .contact-heading { font-size: clamp(3.5rem, 18vw, 6rem); }
+  .skills-grid { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition-duration: 0.01s !important; }
+  .reveal { opacity: 1; transform: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══════════════════════════════════════ -->
+<nav>
+  <a href="#hero" class="logo">MB.</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+  </ul>
+  <div class="nav-ctas">
+    <a href="/cdn-cgi/l/email-protection#f69b979e9f9497919e939ab69a9f8093d89599d8839d" class="btn-sm btn-sm-outline">↓ Resume</a>
+    <a href="#contact" class="btn-sm btn-sm-solid">Let's Talk</a>
+  </div>
+</nav>
+
+<!-- ═══ HERO ═══════════════════════════════════════ -->
+<section class="hero" id="hero">
+  <div class="hero-badge">
+    <span class="badge-dot"></span>
+    Based in Singapore &nbsp;·&nbsp; Available for opportunities
+  </div>
+
+  <h1 class="hero-name">
+    MAHENDRA<br>
+    <span class="green-bg">BAGHEL</span>
+  </h1>
+
+  <div class="hero-grid">
+    <div>
+      <p class="hero-role">Engineering Lead &nbsp;·&nbsp; Accedo.tv</p>
+      <p class="hero-desc">
+        I architect cross-platform streaming applications for <strong>Paramount+, SBS On Demand</strong> and <strong>Sky NZ</strong> — where one codebase must feel native on a phone, a Samsung TV, a Fire Stick, and a set-top box simultaneously.
+      </p>
+      <div class="hero-ctas">
+        <a href="#work" class="btn-lg btn-lg-solid">View My Work →</a>
+        <a href="#contact" class="btn-lg btn-lg-green">Get In Touch</a>
+      </div>
+    </div>
+    <div class="hero-right-text">
+      <p>9+ years in front-end and cross-platform engineering — from enterprise e-commerce and fintech to large-scale OTT streaming for global broadcasters.</p>
+      <p>Specialising in <strong>React Native TV</strong>, focus management for remote-controlled UIs, and engineering teams that ship consistently.</p>
+    </div>
+  </div>
+
+  <div class="hero-stats">
+    <div class="hstat">
+      <div class="hstat-num">9+</div>
+      <div class="hstat-label">Years experience</div>
+    </div>
+    <div class="hstat">
+      <div class="hstat-num">6</div>
+      <div class="hstat-label">CTV platforms shipped</div>
+    </div>
+    <div class="hstat">
+      <div class="hstat-num">40%</div>
+      <div class="hstat-label">Performance gains on component libraries</div>
+    </div>
+    <div class="hstat">
+      <div class="hstat-num">30%</div>
+      <div class="hstat-label">Reduction in dev effort via tooling</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TICKER ═════════════════════════════════════ -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span class="ticker-item lit">React Native <span class="tdot"></span></span>
+    <span class="ticker-item">Samsung Tizen <span class="tdot"></span></span>
+    <span class="ticker-item">LG webOS <span class="tdot"></span></span>
+    <span class="ticker-item lit">Android TV <span class="tdot"></span></span>
+    <span class="ticker-item">Fire OS <span class="tdot"></span></span>
+    <span class="ticker-item">Apple tvOS <span class="tdot"></span></span>
+    <span class="ticker-item lit">TypeScript <span class="tdot"></span></span>
+    <span class="ticker-item">Micro-Frontends <span class="tdot"></span></span>
+    <span class="ticker-item">Architecture <span class="tdot"></span></span>
+    <span class="ticker-item lit">Performance <span class="tdot"></span></span>
+    <span class="ticker-item">Cross-Platform <span class="tdot"></span></span>
+    <span class="ticker-item">Scalability <span class="tdot"></span></span>
+    <span class="ticker-item lit">React Native <span class="tdot"></span></span>
+    <span class="ticker-item">Samsung Tizen <span class="tdot"></span></span>
+    <span class="ticker-item">LG webOS <span class="tdot"></span></span>
+    <span class="ticker-item lit">Android TV <span class="tdot"></span></span>
+    <span class="ticker-item">Fire OS <span class="tdot"></span></span>
+    <span class="ticker-item">Apple tvOS <span class="tdot"></span></span>
+    <span class="ticker-item lit">TypeScript <span class="tdot"></span></span>
+    <span class="ticker-item">Micro-Frontends <span class="tdot"></span></span>
+    <span class="ticker-item">Architecture <span class="tdot"></span></span>
+    <span class="ticker-item lit">Performance <span class="tdot"></span></span>
+    <span class="ticker-item">Cross-Platform <span class="tdot"></span></span>
+    <span class="ticker-item">Scalability <span class="tdot"></span></span>
+  </div>
+</div>
+
+<!-- ═══ ABOUT / STATS ══════════════════════════════ -->
+<section class="sec sec-white" id="about">
+  <div class="sec-header reveal">
+    <div class="eyebrow">The Stats</div>
+    <h2 class="sec-h2">A data-driven engineering leader.</h2>
+    <p class="sec-intro">Front-end architecture and cross-platform delivery — specialising in OTT streaming where performance on resource-constrained devices is non-negotiable.</p>
+  </div>
+
+  <div class="stats-grid reveal d1">
+    <div class="stat-box stat-box-green">
+      <div class="sbox-num">9+</div>
+      <div class="sbox-label">Years experience</div>
+      <div class="sbox-body">Across enterprise, fintech, healthcare, and OTT streaming platforms.</div>
+    </div>
+    <div class="stat-box">
+      <div class="sbox-num">6</div>
+      <div class="sbox-label">CTV platforms shipped</div>
+      <div class="platforms">
+        <span class="ptag">Samsung Tizen</span>
+        <span class="ptag">LG webOS</span>
+        <span class="ptag">Android TV</span>
+        <span class="ptag">Fire OS</span>
+        <span class="ptag">Apple tvOS</span>
+        <span class="ptag">Hisense Hubbl</span>
+      </div>
+    </div>
+    <div class="stat-box" style="display:flex;flex-direction:column;gap:.4rem;">
+      <div style="font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);margin-bottom:.25rem;">Current Base</div>
+      <div style="font-family:var(--font-d);font-size:1.5rem;font-weight:800;letter-spacing:-.02em;color:var(--ink);display:flex;align-items:center;gap:.5rem;">
+        <span style="display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--green);box-shadow:0 0 0 3px rgba(184,255,79,.25);animation:pulse 2.2s ease infinite;flex-shrink:0;"></span>
+        Singapore
+      </div>
+      <div class="sbox-body" style="margin-top:.25rem;">Available for new opportunities.</div>
+    </div>
+    <div class="stat-box stat-box-dark">
+      <div class="sbox-num" style="color:#fff;">40%</div>
+      <div class="sbox-label">Performance gains</div>
+      <div class="sbox-body">On internal component libraries and CTV rendering pipelines.</div>
+    </div>
+    <div class="stat-box">
+      <div class="sbox-num">30%</div>
+      <div class="sbox-label">Faster dev velocity</div>
+      <div class="sbox-body">Through component libraries, tooling, and AI-assisted engineering workflows.</div>
+    </div>
+    <div class="stat-box stat-box-dark">
+      <div class="sbox-label" style="color:rgba(255,255,255,.4);margin-bottom:.75rem;">Core Focus</div>
+      <div class="sbox-chips">
+        <span class="sbox-chip">Perf. Optimization</span>
+        <span class="sbox-chip">Micro-Frontends</span>
+        <span class="sbox-chip">Cross-Platform</span>
+        <span class="sbox-chip">Team Mentorship</span>
+        <span class="sbox-chip">AI-Assisted Dev</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ WORK ════════════════════════════════════════ -->
+<section class="sec" id="work">
+  <div class="sec-header reveal">
+    <div class="eyebrow">Featured Work</div>
+    <h2 class="sec-h2">Shipped to millions.<br>Across every screen.</h2>
+    <p class="sec-intro">Eight production projects spanning OTT streaming, enterprise SaaS, fintech, and public-sector platforms. Click any project to read the full case study.</p>
+  </div>
+
+  <div class="proj-list" id="proj-list">
+    <!-- rendered by JS -->
+  </div>
+</section>
+
+<!-- Case study overlay -->
+<div id="cs-overlay" class="cs-overlay" role="dialog" aria-modal="true" aria-label="Case study">
+  <div class="cs-topbar">
+    <button class="cs-back" id="cs-close">← Back to work</button>
+    <button class="cs-close" id="cs-close2">Close</button>
+  </div>
+  <div class="cs-body-wrap" id="cs-content"></div>
+</div>
+
+<!-- ═══ EXPERIENCE ══════════════════════════════════ -->
+<section class="sec sec-alt" id="experience">
+  <div class="sec-header reveal">
+    <div class="eyebrow">Career Timeline</div>
+    <h2 class="sec-h2">Nine years. Five companies.</h2>
+    <p class="sec-intro">From enterprise portals in Delhi to engineering lead on global OTT platforms in Singapore.</p>
+  </div>
+
+  <div class="exp-grid reveal d1">
+    <div class="exp-tabs" id="exp-tabs">
+      <button class="exp-tab on" data-i="0">
+        <div class="exp-tab-role">Engineering Lead</div>
+        <div class="exp-tab-co">Accedo.tv · Singapore</div>
+      </button>
+      <button class="exp-tab" data-i="1">
+        <div class="exp-tab-role">Senior Assoc. L2</div>
+        <div class="exp-tab-co">Publicis Sapient</div>
+      </button>
+      <button class="exp-tab" data-i="2">
+        <div class="exp-tab-role">Sr. Full Stack Dev</div>
+        <div class="exp-tab-co">ZS Associates · Pune</div>
+      </button>
+      <button class="exp-tab" data-i="3">
+        <div class="exp-tab-role">Sr. Front-End Dev</div>
+        <div class="exp-tab-co">Accenture · Pune</div>
+      </button>
+      <button class="exp-tab" data-i="4">
+        <div class="exp-tab-role">Front-End Developer</div>
+        <div class="exp-tab-co">TCS · Delhi</div>
+      </button>
+    </div>
+
+    <div id="exp-panels">
+      <div class="exp-panel on" data-i="0">
+        <div class="exp-period">May 2023 — Present</div>
+        <div class="exp-title">Engineering Lead</div>
+        <div class="exp-company">Accedo.tv · Singapore</div>
+        <div class="exp-body">Leading front-end and cross-platform engineering on Paramount+, SBS On Demand, and Sky NZ. Own end-to-end delivery — architecture, sprint planning, code reviews, team coordination, and final launch. Established TV-first patterns for focus management, navigation, and performance that became internal best practice across engagements.</div>
+        <div class="exp-kpis">
+          <div class="exp-kpi"><div class="exp-kpi-val"><em>6</em> months</div><div class="exp-kpi-desc">SBS On Demand CTV delivered end-to-end</div></div>
+          <div class="exp-kpi"><div class="exp-kpi-val"><em>4+</em> screens</div><div class="exp-kpi-desc">Sky NZ — one React Native codebase</div></div>
+          <div class="exp-kpi"><div class="exp-kpi-val"><em>3</em> clients</div><div class="exp-kpi-desc">Paramount+, SBS On Demand, Sky NZ</div></div>
+          <div class="exp-kpi"><div class="exp-kpi-val"><em>↑</em> 40%</div><div class="exp-kpi-desc">Component library performance improvement</div></div>
+        </div>
+      </div>
+      <div class="exp-panel" data-i="1">
+        <div class="exp-period">Sep 2022 — Apr 2023</div>
+        <div class="exp-title">Senior Associate L2</div>
+        <div class="exp-company">Publicis Sapient / Credit Agricole CIB · Singapore</div>
+        <div class="exp-body">Built a custom React component library standardising UI elements bank-wide for Credit Agricole CIB's internal corporate-banking platform. Created starter templates that accelerated new product kickoff. Set up a multi-stage CI/CD pipeline with automated quality gates and reporting dashboards.</div>
+        <div class="exp-kpis">
+          <div class="exp-kpi"><div class="exp-kpi-val"><em>↓</em> 30%</div><div class="exp-kpi-desc">Reduction in duplicated front-end effort across teams</div></div>
+          <div class="exp-kpi"><div class="exp-kpi-val"><em>1</em> library</div><div class="exp-kpi-desc">Component system serving all product teams at the bank</div></div>
+        </div>
+      </div>
+      <div class="exp-panel" data-i="2">
+        <div class="exp-period">Apr 2021 — Sep 2022</div>
+        <div class="exp-title">Senior Full Stack Developer</div>
+        <div class="exp-company">ZS Associates · Pune</div>
+        <div class="exp-body">Built a Google Maps–powered healthcare territory management SaaS for pharmaceutical clients — enabling field operations teams to draw, visualise, and optimise sales territories across real-world geography. Led the Angular 8 → 12 migration and built a reusable component architecture that improved team delivery speed.</div>
+        <div class="exp-kpis">
+          <div class="exp-kpi"><div class="exp-kpi-val"><em>↑</em> 20%</div><div class="exp-kpi-desc">Performance gain from Angular migration</div></div>
+          <div class="exp-kpi"><div class="exp-kpi-val">Ng <em>12</em></div><div class="exp-kpi-desc">Led Angular 8 → 12 migration end-to-end</div></div>
+        </div>
+      </div>
+      <div class="exp-panel" data-i="3">
+        <div class="exp-period">Nov 2018 — Mar 2021</div>
+        <div class="exp-title">Senior Front-End Developer</div>
+        <div class="exp-company">Accenture · Pune</div>
+        <div class="exp-body">Delivered the ETK Finland tax and finance portal end-to-end. Built complex form-heavy modules with Redux state management for a compliance-critical government system. Led several Angular and React framework migrations for enterprise clients across finance and public sector.</div>
+        <div class="exp-kpis">
+          <div class="exp-kpi"><div class="exp-kpi-val"><em>2+</em> yrs</div><div class="exp-kpi-desc">Leading front-end on ETK Finland portal</div></div>
+          <div class="exp-kpi"><div class="exp-kpi-val">Gov<em>Tech</em></div><div class="exp-kpi-desc">Tax and compliance systems expertise</div></div>
+        </div>
+      </div>
+      <div class="exp-panel" data-i="4">
+        <div class="exp-period">May 2016 — Oct 2018</div>
+        <div class="exp-title">Front-End Developer</div>
+        <div class="exp-company">Tata Consultancy Services · Delhi</div>
+        <div class="exp-body">First major enterprise role. Built the Bombardier Incident Management portal from scratch in AngularJS — ticket views, escalation workflows, cross-team collaboration, and progress timelines. Also worked on GoldPrice.org e-commerce platform with live data feeds and pricing pipelines.</div>
+        <div class="exp-kpis">
+          <div class="exp-kpi"><div class="exp-kpi-val"><em>2</em> apps</div><div class="exp-kpi-desc">Bombardier portal + GoldPrice.org e-commerce</div></div>
+          <div class="exp-kpi"><div class="exp-kpi-val"><em>→</em> Start</div><div class="exp-kpi-desc">Foundation of an enterprise engineering career</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SKILLS ══════════════════════════════════════ -->
+<section class="sec sec-white" id="skills">
+  <div class="sec-header reveal">
+    <div class="eyebrow">The Skill Matrix</div>
+    <h2 class="sec-h2">Every platform. Every screen.</h2>
+    <p class="sec-intro">Hover any chip to highlight it. Balancing deep technical expertise with engineering leadership across the full stack.</p>
+  </div>
+
+  <div class="skills-grid reveal d1">
+    <div class="sk-cat">
+      <div class="sk-cat-label">CTV / OTT</div>
+      <div class="sk-chips">
+        <span class="sk-chip">Samsung Tizen</span>
+        <span class="sk-chip">LG webOS</span>
+        <span class="sk-chip">Android TV</span>
+        <span class="sk-chip">Fire OS</span>
+        <span class="sk-chip">Apple tvOS</span>
+        <span class="sk-chip">Hisense Hubbl</span>
+        <span class="sk-chip">Set-Top Boxes</span>
+      </div>
+    </div>
+    <div class="sk-cat">
+      <div class="sk-cat-label">Frontend</div>
+      <div class="sk-chips">
+        <span class="sk-chip">React</span>
+        <span class="sk-chip">React Native</span>
+        <span class="sk-chip">TypeScript</span>
+        <span class="sk-chip">Next.js</span>
+        <span class="sk-chip">Angular 8–15+</span>
+        <span class="sk-chip">Preact</span>
+        <span class="sk-chip">Redux</span>
+        <span class="sk-chip">CSS3 / SCSS</span>
+      </div>
+    </div>
+    <div class="sk-cat">
+      <div class="sk-cat-label">Architecture</div>
+      <div class="sk-chips">
+        <span class="sk-chip">Micro-Frontend</span>
+        <span class="sk-chip">Component Libraries</span>
+        <span class="sk-chip">Cross-Platform</span>
+        <span class="sk-chip">State Management</span>
+        <span class="sk-chip">Modular Design</span>
+        <span class="sk-chip">Agile / Scrum</span>
+      </div>
+    </div>
+    <div class="sk-cat">
+      <div class="sk-cat-label">Performance</div>
+      <div class="sk-chips">
+        <span class="sk-chip">Web Vitals</span>
+        <span class="sk-chip">Lighthouse</span>
+        <span class="sk-chip">Code Splitting</span>
+        <span class="sk-chip">Lazy Loading</span>
+        <span class="sk-chip">Memory Profiling</span>
+        <span class="sk-chip">TV-first Perf</span>
+      </div>
+    </div>
+    <div class="sk-cat">
+      <div class="sk-cat-label">AI-Assisted Dev</div>
+      <div class="sk-chips">
+        <span class="sk-chip">Claude</span>
+        <span class="sk-chip">ChatGPT</span>
+        <span class="sk-chip">Prompt Engineering</span>
+        <span class="sk-chip">Coding Agents</span>
+        <span class="sk-chip">Codebase Audits</span>
+        <span class="sk-chip">Agent Debugging</span>
+      </div>
+    </div>
+    <div class="sk-cat">
+      <div class="sk-cat-label">Testing &amp; Tooling</div>
+      <div class="sk-chips">
+        <span class="sk-chip">Jest</span>
+        <span class="sk-chip">Cypress</span>
+        <span class="sk-chip">GitHub Actions</span>
+        <span class="sk-chip">Webpack / Vite</span>
+        <span class="sk-chip">REST APIs</span>
+        <span class="sk-chip">CI/CD Pipelines</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CONTACT ═════════════════════════════════════ -->
+<section class="contact-sec" id="contact">
+  <p class="contact-overline reveal">Ready to scale?</p>
+  <h2 class="contact-heading reveal d1">SAY<br>HELLO.</h2>
+  <div class="contact-cards reveal d2">
+    <div class="ccard avail">
+      <div class="ccard-label">Status</div>
+      <div class="ccard-val">Available for new roles</div>
+    </div>
+    <a href="/cdn-cgi/l/email-protection#1b767a7372797a7c737e775b77726d7e357874356e70" class="ccard">
+      <div class="ccard-label">Email</div>
+      <div class="ccard-val"><span class="__cf_email__" data-cfemail="c5a8a4adaca7a4a2ada0a985a9acb3a0eba6aaebb0ae">[email&#160;protected]</span></div>
+    </a>
+    <a href="tel:+6587319500" class="ccard">
+      <div class="ccard-label">Phone (SG)</div>
+      <div class="ccard-val">+65 8731 9500</div>
+    </a>
+    <a href="https://wa.me/919424786497" target="_blank" rel="noopener" class="ccard">
+      <div class="ccard-label">WhatsApp</div>
+      <div class="ccard-val">+91 9424 786497</div>
+    </a>
+    <a href="https://www.linkedin.com/in/mahendra-baghel/" target="_blank" rel="noopener" class="ccard">
+      <div class="ccard-label">LinkedIn</div>
+      <div class="ccard-val">mahendra-baghel</div>
+    </a>
+    <div class="ccard">
+      <div class="ccard-label">Location</div>
+      <div class="ccard-val">Singapore · Open to remote</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ══════════════════════════════════════ -->
+<footer>
+  <span>© 2025 <strong>Mahendra Baghel</strong></span>
+  <span>Engineering Lead · Singapore</span>
+  <span>Designed with Code.</span>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+/* ── DATA ────────────────────────────────────────── */
+const PROJECTS = [
+  {
+    slug:'sky-nz', num:'01', year:'2025 – Present', tag:'OTT · React Native',
+    title:'Sky NZ — Cross-Platform OTT',
+    desc:'A single React Native codebase serving iOS, Android, and 4+ TV platforms simultaneously — without forking into platform-specific codebases.',
+    outcome:'<strong>One codebase → four+ device classes.</strong> Consistent UX across all platforms with dramatically reduced maintenance overhead.',
+    stack:['React Native','react-native-tvos','TypeScript','React Navigation'],
+    client:'Sky New Zealand (via Accedo.tv)',
+    sub:'Cross-Platform OTT in React Native',
+    context:'Sky NZ wanted a unified streaming experience across iOS, Android mobile, Android TV, and other CTV targets — without maintaining four separate codebases.',
+    role:'Senior engineer / co-lead on the React Native build, focused on shared mobile-and-TV navigation, focus management, and performance.',
+    approach:['Architected a shared React Navigation layer handling touch input on mobile and D-pad / remote input on TV from the same component tree.','Solved hard TV-specific edge cases — modal and background simultaneous key event handling, focus restoration, and platform quirks across Tizen, webOS, Android TV, and Fire OS.','Optimized rendering and memory use for resource-constrained TV devices.']
+  },
+  {
+    slug:'sbs', num:'02', year:'2024', tag:'CTV · Tech Lead',
+    title:'SBS On Demand — CTV Delivery',
+    desc:"Complete CTV rebuild for Australia's public broadcaster, shipped end-to-end in 6 months across Samsung, LG, and additional TV platforms.",
+    outcome:"<strong>Delivered in 6 months, end-to-end.</strong> Now serving SBS On Demand's audience across Australia.",
+    stack:['React','Tizen','webOS','JavaScript','Set-Top Boxes'],
+    client:'SBS Australia (via Accedo.tv)',
+    sub:'End-to-End CTV Delivery in 6 Months',
+    context:"SBS On Demand needed a complete rebuild of their CTV experience across Samsung, LG, and other TV platforms — under an aggressive timeline.",
+    role:'Tech Lead. Owned the project end-to-end: architecture, sprint planning, code reviews, team coordination, and final delivery.',
+    approach:['Designed a single codebase running across Samsung Tizen, LG webOS, additional CTV platforms, and set-top boxes.','Established TV-first patterns for focus, navigation, performance budgets, and analytics — patterns that became internal best practice.','Coordinated a distributed team across multiple time zones through to launch.']
+  },
+  {
+    slug:'paramount', num:'03', year:'2023 – 2024', tag:'OTT · Architecture',
+    title:'Paramount+ — Multi-Platform Architecture',
+    desc:'Core platform architecture for Paramount+ spanning multiple CTV and set-top-box targets, designed to scale to additional regional clients.',
+    outcome:'<strong>Reusable architecture</strong> that became the foundation for further client engagements, multiplying the value of the original investment.',
+    stack:['React','JavaScript','CTV Runtimes','STB'],
+    client:'Paramount+ (via Accedo.tv)',
+    sub:'Multi-Platform OTT Architecture',
+    context:'Paramount+ needed a single application capable of running across many CTV and STB platforms while supporting multiple regional clients on shared core code.',
+    role:'Senior Architect. Owned the core platform functionality and engineering process.',
+    approach:['Built a single-codebase application running across multiple CTV and STB platforms.','Defined how shared modules and platform abstractions should evolve so regional clients could reuse the same core safely.','Drove the engineering process — feature development, code health, and how the platform scales.']
+  },
+  {
+    slug:'zs-health', num:'04', year:'2021 – 2022', tag:'Enterprise · SaaS',
+    title:'Healthcare Territory Platform',
+    desc:'Google Maps–powered territory management SaaS for pharma field operations. Angular 8 → 12 migration improved performance by 20%+.',
+    outcome:"<strong>Front-line decision tool</strong> for several pharma clients' field-force optimization.",
+    stack:['Angular 12','React','Google Maps API','TypeScript'],
+    client:'ZS Associates',
+    sub:'Maps-Powered Field Operations SaaS',
+    context:'Pharmaceutical companies needed a way to manage field operations geographically — mapping territories, MR routes, and assigned doctor locations.',
+    role:'Senior Full Stack Developer.',
+    approach:['Built a Google Maps–powered SaaS for drawing and managing sales territories.','Surfaced analytics to distinguish high vs low-performing territories.','Led Angular 8 → 12 migration improving performance by 20%+.']
+  },
+  {
+    slug:'dbs-connect', num:'05', year:'2022 – 2023', tag:'Enterprise · FinTech',
+    title:'Credit Agricole — Internal Banking Platform',
+    desc:"Custom React component library and multi-stage CI/CD pipeline for Credit Agricole CIB's corporate banking platform.",
+    outcome:'<strong>Reduced duplicated front-end effort</strong> across product teams and gave the bank a consistent baseline for new applications.',
+    stack:['React','TypeScript','REST APIs','CI/CD'],
+    client:'Credit Agricole CIB',
+    sub:'Component Library & CI/CD for Internal Banking',
+    context:'An internal banking platform used by relationship managers — needing a faster, more consistent way to spin up new product modules.',
+    role:'Senior Full Stack Developer.',
+    approach:['Built a custom React component library standardising UI elements bank-wide.','Created starter templates that accelerated new product kickoff.','Set up automated CI/CD with multi-stage quality gates and reporting.']
+  },
+  {
+    slug:'etk-finland', num:'06', year:'2019 – 2021', tag:'Public Sector',
+    title:'ETK Finland — Tax & Finance Portal',
+    desc:"End-to-end front-end for Finland's compliance-critical tax and financial workflow portal, built with Angular and Redux.",
+    outcome:'<strong>Multiple production modules shipped</strong> for a government-grade compliance system.',
+    stack:['Angular','Redux','JavaScript'],
+    client:'Accenture (Finnish public sector)',
+    sub:'Tax & Finance Portal',
+    context:'A portal for managing Finnish tax and financial workflows — where compliance and reliability are non-negotiable.',
+    role:'Senior Front-End Developer.',
+    approach:['Built end-to-end front-end modules for tax processing and financial workflows.','Implemented Redux for predictable state management across large, complex forms.','Migrated legacy systems to modern frameworks for scalability and security.']
+  },
+  {
+    slug:'bombardier', num:'07', year:'2016 – 2018', tag:'Enterprise',
+    title:'Bombardier — Incident Management Portal',
+    desc:"Internal incident tracking portal built from the ground up for Bombardier's cross-team operations in AngularJS.",
+    outcome:"<strong>Production portal</strong> integrated into Bombardier's internal incident-management workflow.",
+    stack:['AngularJS'],
+    client:'Bombardier (via TCS)',
+    sub:'Incident Management Portal',
+    context:'Bombardier needed an internal tool for tracking and sharing the progress of operational incidents across teams in real time.',
+    role:'Front-End Developer.',
+    approach:['Designed and built the portal from scratch in AngularJS.','Built ticket views, escalation workflows, and progress timeline components.','Designed cross-team collaboration features for transparent ownership.']
+  },
+  {
+    slug:'goldprice', num:'08', year:'2017 – 2018', tag:'E-commerce',
+    title:'GoldPrice.org — E-commerce Platform',
+    desc:'Large-scale gold pricing retail platform with live-updating data aggregated from multiple sources.',
+    outcome:'One of the <strong>largest gold-pricing retail platforms</strong> of its kind with real-time feeds.',
+    stack:['AngularJS','Data pipelines'],
+    client:'GoldPrice.org (via TCS)',
+    sub:'Real-time E-commerce Platform',
+    context:'A large retail platform anchored on real-time gold price data scraped and aggregated from multiple sources.',
+    role:'Front-End Developer.',
+    approach:['Worked across the storefront and pricing surfaces with live-updating data.','Gained hands-on knowledge of e-commerce architecture, pricing feeds, and front-end SEO.']
+  }
+];
+
+/* ── RENDER PROJECTS ─────────────────────────────── */
+let showAll = false;
+function renderProjects(items) {
+  return items.map(p => `
+    <div class="proj-row" data-slug="${p.slug}" tabindex="0" role="button" aria-label="View ${p.title} case study">
+      <div class="proj-row-num">${p.num}</div>
+      <div class="proj-row-main">
+        <div class="proj-row-tag">${p.tag}</div>
+        <div class="proj-row-title">${p.title}</div>
+        <div class="proj-row-desc">${p.desc}</div>
+        <div class="proj-row-stack">${p.stack.map(s=>`<span class="pchip">${s}</span>`).join('')}</div>
+      </div>
+      <div>
+        <div class="proj-row-year">${p.year}</div>
+        <div class="proj-row-arrow" aria-hidden="true">→</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function buildProjectList() {
+  const list = document.getElementById('proj-list');
+  const visible = showAll ? PROJECTS : PROJECTS.slice(0,4);
+  list.innerHTML = renderProjects(visible);
+  const toggle = document.createElement('div');
+  toggle.className = 'show-more-row';
+  toggle.textContent = showAll ? '↑ Show less' : `Show all 8 projects ↓`;
+  toggle.addEventListener('click', () => { showAll = !showAll; buildProjectList(); });
+  list.appendChild(toggle);
+}
+
+function openCS(slug) {
+  const p = PROJECTS.find(x=>x.slug===slug);
+  if (!p) return;
+  document.getElementById('cs-content').innerHTML = `
+    <span class="cs-kicker">${p.tag}</span>
+    <h1 class="cs-title">${p.title}</h1>
+    <p class="cs-sub">${p.sub}</p>
+    <div class="cs-meta-row">
+      <div class="cs-meta-cell"><div class="cs-meta-label">Client</div><div class="cs-meta-val">${p.client}</div></div>
+      <div class="cs-meta-cell"><div class="cs-meta-label">Year</div><div class="cs-meta-val">${p.year}</div></div>
+      <div class="cs-meta-cell"><div class="cs-meta-label">Engagement</div><div class="cs-meta-val">${p.tag.split('·').pop().trim()}</div></div>
+    </div>
+    <span class="cs-section-label">Context</span>
+    <p class="cs-text">${p.context}</p>
+    <span class="cs-section-label">My Role</span>
+    <p class="cs-text">${p.role}</p>
+    <span class="cs-section-label">Approach</span>
+    <ul class="cs-bullets">${p.approach.map(a=>`<li>${a}</li>`).join('')}</ul>
+    <span class="cs-section-label">Outcome</span>
+    <div class="cs-outcome">${p.outcome}</div>
+    <span class="cs-section-label">Full Stack</span>
+    <div class="cs-chips-row">${p.stack.map(s=>`<span class="cs-chip">${s}</span>`).join('')}</div>
+  `;
+  const overlay = document.getElementById('cs-overlay');
+  overlay.classList.add('open');
+  overlay.scrollTop = 0;
+  document.body.style.overflow = 'hidden';
+}
+
+function closeCS() {
+  document.getElementById('cs-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('cs-close').addEventListener('click', closeCS);
+document.getElementById('cs-close2').addEventListener('click', closeCS);
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeCS(); });
+document.addEventListener('click', e => {
+  const row = e.target.closest('.proj-row');
+  if (row) openCS(row.dataset.slug);
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Enter') {
+    const row = e.target.closest('.proj-row');
+    if (row) openCS(row.dataset.slug);
+  }
+});
+
+/* ── EXPERIENCE TABS ─────────────────────────────── */
+document.getElementById('exp-tabs').addEventListener('click', e => {
+  const tab = e.target.closest('.exp-tab');
+  if (!tab) return;
+  document.querySelectorAll('.exp-tab').forEach(t => t.classList.remove('on'));
+  document.querySelectorAll('.exp-panel').forEach(p => p.classList.remove('on'));
+  tab.classList.add('on');
+  document.querySelector(`.exp-panel[data-i="${tab.dataset.i}"]`).classList.add('on');
+});
+
+/* ── SMOOTH NAV ──────────────────────────────────── */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const t = document.querySelector(a.getAttribute('href'));
+    if (!t) return;
+    e.preventDefault();
+    window.scrollTo({ top: window.scrollY + t.getBoundingClientRect().top - 74, behavior: 'smooth' });
+  });
+});
+
+/* ── SCROLL REVEAL ───────────────────────────────── */
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('vis'); io.unobserve(e.target); } });
+}, { threshold: 0.06, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+/* ── INIT ────────────────────────────────────────── */
+buildProjectList();
+</script>
+</body>
+</html>

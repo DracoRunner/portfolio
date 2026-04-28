@@ -1,117 +1,38 @@
-import { useEffect, useRef } from 'react';
-import {
-    Chart as ChartJS,
-    RadialLinearScale,
-    PointElement,
-    LineElement,
-    Filler,
-    Tooltip,
-    Legend
-} from 'chart.js';
-import { Radar } from 'react-chartjs-2';
-import { skillsData, frontendSkills, architectureSkills } from '../../data/portfolioData';
-
-// Register Chart.js components
-ChartJS.register(RadialLinearScale, PointElement, LineElement, Filler, Tooltip, Legend);
-
-// Skill tag component
-const SkillTag = ({ skill }) => (
-    <span className="px-4 py-2 bg-white border border-charcoal rounded-lg font-mono text-sm hover:bg-charcoal hover:text-white transition-colors cursor-default">
-        {skill}
-    </span>
-);
-
-// Skill category component
-const SkillCategory = ({ title, skills, dotColor }) => (
-    <div className="mb-8">
-        <h3 className="font-bold text-xl mb-4 flex items-center gap-2">
-            <span className={`w-3 h-3 ${dotColor} rounded-full border border-charcoal`} />
-            {title}
-        </h3>
-        <div className="flex flex-wrap gap-2">
-            {skills.map((skill) => (
-                <SkillTag key={skill} skill={skill} />
-            ))}
-        </div>
-    </div>
-);
+import React from 'react';
+import { skillsContent } from '../../content/portfolioContent';
 
 const Skills = () => {
-    const chartData = {
-        labels: skillsData.labels,
-        datasets: [
-            {
-                label: 'Skill Proficiency',
-                data: skillsData.data,
-                fill: true,
-                backgroundColor: 'rgba(204, 255, 0, 0.4)',
-                borderColor: '#121212',
-                pointBackgroundColor: '#121212',
-                pointBorderColor: '#fff',
-                pointHoverBackgroundColor: '#fff',
-                pointHoverBorderColor: '#121212'
-            }
-        ]
-    };
+  return (
+    <section className="sec bg-white border-b border-[var(--border)] px-6 md:px-16 py-24" id="skills">
+      <div className="sec-header mb-14 reveal">
+        <div className="inline-block text-[0.7rem] font-bold tracking-[0.2em] uppercase bg-[var(--green)] text-[var(--ink)] px-3 py-1 rounded-[4px] mb-5">
+          {skillsContent.eyebrow}
+        </div>
+        <h2 className="sec-h2-font text-[clamp(2rem,4vw,3.2rem)] mb-4">{skillsContent.title}</h2>
+        <p className="text-[1.05rem] leading-[1.78] text-[var(--ink-2)] max-w-[580px]">{skillsContent.intro}</p>
+      </div>
 
-    const chartOptions = {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-            legend: { display: false }
-        },
-        scales: {
-            r: {
-                angleLines: { color: 'rgba(0,0,0,0.1)' },
-                grid: { color: 'rgba(0,0,0,0.05)' },
-                pointLabels: {
-                    font: {
-                        family: 'Space Grotesk',
-                        size: 12,
-                        weight: 'bold'
-                    },
-                    color: '#121212'
-                },
-                ticks: { display: false }
-            }
-        }
-    };
-
-    return (
-        <section id="skills" className="py-20 px-6 md:px-12 lg:px-24 max-w-7xl mx-auto">
-            <div className="text-center mb-16">
-                <h2 className="font-grotesk text-5xl font-bold">THE SKILL MATRIX</h2>
-                <p className="mt-4 text-gray-600">
-                    Balancing leadership with deep technical expertise.
-                </p>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 bg-[var(--border)] border border-[var(--border)] rounded-[var(--radius)] overflow-hidden gap-[1px] mt-14 reveal">
+        {skillsContent.categories.map((cat, i) => (
+          <div key={i} className="bg-white p-8">
+            <div className="inline-block text-[0.7rem] font-bold tracking-[0.16em] uppercase text-black bg-[var(--green)] px-2.5 py-0.5 rounded-[4px] mb-4.5">
+              {cat.label}
             </div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                {/* Radar Chart */}
-                <div className="bg-white rounded-full p-6 border border-gray-100 shadow-xl relative aspect-square max-w-md mx-auto flex items-center justify-center">
-                    <div className="chart-container" style={{ height: '100%', width: '100%' }}>
-                        <Radar data={chartData} options={chartOptions} />
-                    </div>
-                    {/* Decorative Elements */}
-                    <div className="absolute inset-0 border-2 border-dashed border-gray-200 rounded-full animate-spin-slow pointer-events-none" />
-                </div>
-
-                {/* Skill Tags */}
-                <div>
-                    <SkillCategory
-                        title="Frontend Arsenal"
-                        skills={frontendSkills}
-                        dotColor="bg-lime-acid"
-                    />
-                    <SkillCategory
-                        title="Architecture & Lead"
-                        skills={architectureSkills}
-                        dotColor="bg-lavender-digi"
-                    />
-                </div>
+            <div className="flex flex-wrap gap-1.5">
+              {cat.skills.map((skill, j) => (
+                <span 
+                  key={j} 
+                  className="sk-chip-transition px-3 py-1.5 border-[1.5px] border-[var(--border)] rounded-[7px] text-[0.8rem] text-[var(--ink-2)] hover:bg-[var(--green)] hover:border-[var(--green)] hover:text-black cursor-default"
+                >
+                  {skill}
+                </span>
+              ))}
             </div>
-        </section>
-    );
+          </div>
+        ))}
+      </div>
+    </section>
+  );
 };
 
 export default Skills;

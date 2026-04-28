@@ -1,65 +1,60 @@
+import React from 'react';
+
 const Navbar = () => {
-    const scrollToSection = (id) => {
-        document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
-    };
+  const scrollTo = (id) => (e) => {
+    e.preventDefault();
+    const element = document.getElementById(id);
+    if (element) {
+      const offset = 74;
+      const bodyRect = document.body.getBoundingClientRect().top;
+      const elementRect = element.getBoundingClientRect().top;
+      const elementPosition = elementRect - bodyRect;
+      const offsetPosition = elementPosition - offset;
 
-    return (
-        <nav className="fixed top-0 w-full z-50 px-6 py-4 flex justify-between items-center glass-panel border-b border-gray-200">
-            <div className="font-grotesk font-bold text-xl tracking-tighter">MB.</div>
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
 
-            <div className="hidden md:flex space-x-8 text-sm font-semibold tracking-wide">
-                <button
-                    onClick={() => scrollToSection('about')}
-                    className="hover:text-lime-600 transition-colors"
-                >
-                    ABOUT
-                </button>
-                <button
-                    onClick={() => scrollToSection('experience')}
-                    className="hover:text-lime-600 transition-colors"
-                >
-                    EXPERIENCE
-                </button>
-                <button
-                    onClick={() => scrollToSection('skills')}
-                    className="hover:text-lime-600 transition-colors"
-                >
-                    SKILLS
-                </button>
-            </div>
+  return (
+    <nav className="nav-sticky flex items-center justify-between px-6 md:px-16 py-4">
+      <a href="#hero" onClick={scrollTo('hero')} className="logo-font text-[1.05rem]">MB.</a>
+      
+      <ul className="hidden md:flex gap-10 list-none">
+        <li>
+          <a href="#about" onClick={scrollTo('about')} className="text-[0.8rem] font-medium tracking-[0.08em] uppercase text-[var(--ink-3)] hover:text-[var(--ink)] transition-colors">
+            About
+          </a>
+        </li>
+        <li>
+          <a href="#work" onClick={scrollTo('work')} className="text-[0.8rem] font-medium tracking-[0.08em] uppercase text-[var(--ink-3)] hover:text-[var(--ink)] transition-colors">
+            Work
+          </a>
+        </li>
+        <li>
+          <a href="#experience" onClick={scrollTo('experience')} className="text-[0.8rem] font-medium tracking-[0.08em] uppercase text-[var(--ink-3)] hover:text-[var(--ink)] transition-colors">
+            Experience
+          </a>
+        </li>
+        <li>
+          <a href="#skills" onClick={scrollTo('skills')} className="text-[0.8rem] font-medium tracking-[0.08em] uppercase text-[var(--ink-3)] hover:text-[var(--ink)] transition-colors">
+            Skills
+          </a>
+        </li>
+      </ul>
 
-            <div className="flex items-center gap-4">
-                <a
-                    href="/assets/resume.pdf"
-                    download="Mahendra_Baghel_Resume.pdf"
-                    className="hidden md:flex items-center gap-2 px-4 py-2 border-2 border-charcoal text-charcoal font-bold rounded-full text-xs hover:bg-charcoal hover:text-white transition-all duration-300"
-                >
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="14"
-                        height="14"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                    >
-                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                        <polyline points="7 10 12 15 17 10" />
-                        <line x1="12" y1="15" x2="12" y2="3" />
-                    </svg>
-                    RESUME
-                </a>
-                <button
-                    onClick={() => scrollToSection('contact')}
-                    className="px-5 py-2 bg-charcoal text-white font-bold rounded-full text-xs hover:bg-lime-acid hover:text-charcoal transition-all duration-300"
-                >
-                    LET'S TALK
-                </button>
-            </div>
-        </nav>
-    );
+      <div className="flex gap-2">
+        <a href="#" className="btn-sm btn-sm-outline rounded-full px-5 py-2 text-[0.8rem] font-semibold">
+          ↓ Resume
+        </a>
+        <a href="#contact" onClick={scrollTo('contact')} className="btn-sm btn-sm-solid rounded-full px-5 py-2 text-[0.8rem] font-semibold">
+          Let&apos;s Talk
+        </a>
+      </div>
+    </nav>
+  );
 };
 
 export default Navbar;

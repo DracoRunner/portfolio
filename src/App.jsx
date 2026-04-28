@@ -1,26 +1,38 @@
+import React, { useEffect } from 'react';
 import {
-    ThreeBackground,
     Navbar,
     Hero,
+    Ticker,
     BentoGrid,
+    Projects,
     Experience,
     Skills,
     Footer
 } from './components';
 
 function App() {
+    useEffect(() => {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('vis');
+                }
+            });
+        }, { threshold: 0.06 });
+
+        document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+
+        return () => observer.disconnect();
+    }, []);
+
     return (
-        <div className="font-inter">
-            {/* 3D Background */}
-            <ThreeBackground />
-
-            {/* Navigation */}
+        <div className="font-sans bg-[var(--bg)] text-[var(--ink)]">
             <Navbar />
-
-            {/* Main Content */}
-            <main className="relative pt-20">
+            <main>
                 <Hero />
+                <Ticker />
                 <BentoGrid />
+                <Projects />
                 <Experience />
                 <Skills />
                 <Footer />

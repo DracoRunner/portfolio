@@ -1,121 +1,86 @@
-import { personalInfo, contactInfo } from '../../data/portfolioData';
-
-// Stat card component
-const StatCard = ({ children, className = '' }) => (
-    <div className={`rounded-3xl border-2 border-charcoal shadow-neo hover-card ${className}`}>
-        {children}
-    </div>
-);
-
-// Summary card
-const SummaryCard = () => (
-    <StatCard className="md:col-span-2 lg:col-span-2 row-span-2 bg-white p-8 flex flex-col justify-between">
-        <div>
-            <div className="w-12 h-12 bg-lavender-digi rounded-full flex items-center justify-center text-2xl mb-4">
-                🚀
-            </div>
-            <h3 className="font-grotesk text-2xl font-bold mb-2">Engineering Vision</h3>
-            <p className="text-gray-600 leading-relaxed">
-                Proven ability to bridge technical excellence with strategic thinking. I don&apos;t just write
-                code; I optimize workflows, mentor teams, and architect solutions that scale.
-            </p>
-        </div>
-        <div className="flex gap-2 mt-4 flex-wrap">
-            <span className="px-3 py-1 border border-charcoal rounded-full text-xs font-bold">
-                Problem Solving
-            </span>
-            <span className="px-3 py-1 border border-charcoal rounded-full text-xs font-bold">
-                Team Leadership
-            </span>
-            <span className="px-3 py-1 border border-charcoal rounded-full text-xs font-bold">
-                Agile
-            </span>
-        </div>
-    </StatCard>
-);
-
-// Years Experience card
-const YearsCard = () => (
-    <StatCard className="bg-lime-acid p-6 flex flex-col items-center justify-center text-center">
-        <span className="font-grotesk text-6xl font-bold">{personalInfo.yearsExperience}</span>
-        <span className="font-mono text-sm mt-2 font-bold uppercase tracking-widest">
-            Years Experience
-        </span>
-    </StatCard>
-);
-
-// Location card
-const LocationCard = () => (
-    <StatCard className="bg-white p-6 flex flex-col justify-between relative overflow-hidden">
-        <div className="absolute top-[-20px] right-[-20px] w-20 h-20 bg-lavender-digi rounded-full opacity-50" />
-        <h4 className="font-bold text-gray-500 text-sm">CURRENT BASE</h4>
-        <div className="mt-auto">
-            <p className="font-grotesk text-3xl font-bold">{contactInfo.location}</p>
-            <p className="text-xs text-gray-500">Available for Opportunities</p>
-        </div>
-    </StatCard>
-);
-
-// Core Focus card
-const FocusCard = () => (
-    <StatCard className="bg-charcoal text-white p-6 flex flex-col justify-center">
-        <h4 className="text-lime-acid font-bold text-sm mb-4">CORE FOCUS</h4>
-        <ul className="space-y-2 font-mono text-sm">
-            <li className="flex items-center gap-2">
-                <span>⚡</span> Perf. Optimization
-            </li>
-            <li className="flex items-center gap-2">
-                <span>🧩</span> Micro-Frontends
-            </li>
-            <li className="flex items-center gap-2">
-                <span>🔐</span> Secure Auth
-            </li>
-        </ul>
-    </StatCard>
-);
-
-// Contact mini card
-const ContactMiniCard = () => {
-    const scrollToContact = () => {
-        document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-    };
-
-    return (
-        <StatCard
-            className="md:col-span-2 bg-lavender-digi p-6 flex items-center justify-between cursor-pointer"
-            onClick={scrollToContact}
-        >
-            <div>
-                <h3 className="font-grotesk text-2xl font-bold">Let&apos;s Collaborate</h3>
-                <p className="text-sm opacity-70">{contactInfo.email}</p>
-            </div>
-            <div className="w-12 h-12 bg-white rounded-full border border-charcoal flex items-center justify-center text-xl">
-                ➔
-            </div>
-        </StatCard>
-    );
-};
+import React from 'react';
+import { aboutContent } from '../../content/portfolioContent';
 
 const BentoGrid = () => {
-    return (
-        <section id="about" className="py-20 px-6 md:px-12 lg:px-24 max-w-7xl mx-auto">
-            <div className="mb-12">
-                <h2 className="font-grotesk text-4xl md:text-6xl font-bold mb-4">THE STATS</h2>
-                <p className="text-lg text-gray-600 max-w-2xl">
-                    A data-driven summary of my professional journey. Focused on reducing time-to-market and
-                    enhancing user experience through technical excellence.
-                </p>
-            </div>
+  return (
+    <section className="sec bg-white border-b border-[var(--border)] px-6 md:px-16 py-24" id="about">
+      <div className="sec-header mb-14 reveal">
+        <div className="inline-block text-[0.7rem] font-bold tracking-[0.2em] uppercase bg-[var(--green)] text-[var(--ink)] px-3 py-1 rounded-[4px] mb-5">
+          {aboutContent.eyebrow}
+        </div>
+        <h2 className="sec-h2-font text-[clamp(2rem,4vw,3.2rem)] mb-4">{aboutContent.title}</h2>
+        <p className="text-[1.05rem] leading-[1.78] text-[var(--ink-2)] max-w-[580px]">{aboutContent.intro}</p>
+      </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 auto-rows-[200px]">
-                <SummaryCard />
-                <YearsCard />
-                <LocationCard />
-                <FocusCard />
-                <ContactMiniCard />
+      <div className="stats-grid-container reveal">
+        {aboutContent.stats.map((stat, i) => {
+          const isGreen = stat.variant === 'green';
+          const isDark = stat.variant === 'dark';
+          const isLocation = stat.isLocation;
+
+          return (
+            <div 
+              key={i} 
+              className={`
+                p-9 flex flex-col gap-2
+                ${isGreen ? "bg-[var(--green)] text-[var(--ink)]" : "bg-white"}
+                ${isDark ? "bg-[var(--ink)] text-white" : ""}
+                ${!isGreen && !isDark ? "bg-white" : ""}
+              `}
+            >
+              {isLocation ? (
+                <>
+                  <div className="text-[0.72rem] font-bold tracking-[0.08em] uppercase text-[var(--ink-3)] mb-1">
+                    {stat.label}
+                  </div>
+                  <div className="logo-font text-[1.5rem] font-extrabold flex items-center gap-2">
+                    <span className="badge-dot w-[9px] h-[9px] bg-[var(--green)] rounded-full shadow-[0_0_0_3px_rgba(184,255,79,0.25)] animate-pulse"></span>
+                    {stat.value}
+                  </div>
+                  <div className="text-[0.9rem] leading-[1.65] text-[var(--ink-2)] mt-1">{stat.body}</div>
+                </>
+              ) : (
+                <>
+                  {stat.num && (
+                    <div className={`sbox-num-font text-[clamp(2.5rem,5vw,4rem)] ${isDark ? "text-white" : "text-[var(--ink)]"}`}>
+                      {stat.num}
+                    </div>
+                  )}
+                  <div className={`text-[0.8rem] font-semibold tracking-[0.06em] uppercase ${isGreen ? "text-black/60" : isDark ? "text-white/45" : "text-[var(--ink-3)]"}`}>
+                    {stat.label}
+                  </div>
+                  {stat.body && (
+                    <div className={`text-[0.9rem] leading-[1.65] mt-1 ${isGreen ? "text-black/65" : isDark ? "text-white/50" : "text-[var(--ink-2)]"}`}>
+                      {stat.body}
+                    </div>
+                  )}
+                  {stat.platforms && (
+                    <div className="flex flex-wrap gap-2 mt-2">
+                      {stat.platforms.map((p, j) => (
+                        <span key={j} className="inline-flex items-center gap-1.5 px-3 py-1 border-[1.5px] border-[var(--border)] rounded-full text-[0.74rem] font-medium text-[var(--ink-2)]">
+                          <span className="w-1.5 h-1.5 bg-[var(--green)] rounded-full"></span>
+                          {p}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                  {stat.chips && (
+                    <div className="flex flex-wrap gap-1.5 mt-2">
+                      {stat.chips.map((c, j) => (
+                        <span key={j} className={`px-2.5 py-1 rounded-[5px] text-[0.72rem] font-medium ${isDark ? "bg-white/10 text-white/70" : "bg-black/5 text-[var(--ink-2)]"}`}>
+                          {c}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </>
+              )}
             </div>
-        </section>
-    );
+          );
+        })}
+      </div>
+    </section>
+  );
 };
 
 export default BentoGrid;

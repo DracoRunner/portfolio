@@ -1,56 +1,48 @@
-import { contactInfo } from '../../data/portfolioData';
+import React from 'react';
+import { contactContent, footerContent } from '../../content/portfolioContent';
 
 const Footer = () => {
-    return (
-        <footer id="contact" className="bg-charcoal text-white py-20 px-6 relative overflow-hidden">
-            <div className="max-w-7xl mx-auto text-center relative z-10">
-                <p className="font-mono text-lime-acid mb-4">READY TO SCALE?</p>
+  return (
+    <>
+      <section className="bg-[var(--ink)] px-6 md:px-16 pt-32 pb-24 border-none" id="contact">
+        <p className="text-[0.72rem] font-bold tracking-[0.2em] uppercase text-[var(--green)] mb-7 reveal">
+          {contactContent.overline}
+        </p>
+        <h2 className="contact-heading-font text-[clamp(4rem,10vw,9rem)] text-white mb-16 reveal">
+          SAY<br />HELLO.
+        </h2>
+        
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-3.5 reveal">
+          {contactContent.cards.map((card, i) => {
+            const isLink = !!card.link;
+            const CardTag = isLink ? 'a' : 'div';
+            const extraProps = isLink ? { href: card.link, target: card.link.startsWith('http') ? '_blank' : undefined, rel: card.link.startsWith('http') ? 'noopener' : undefined } : {};
 
-                <h2 className="font-grotesk text-6xl md:text-8xl font-bold mb-12 hover:text-lime-acid transition-colors cursor-pointer">
-                    <a href={`mailto:${contactInfo.email}`}>SAY HELLO.</a>
-                </h2>
-
-                <div className="flex flex-col md:flex-row justify-center items-center gap-8 text-sm font-mono text-gray-400">
-                    <div className="flex items-center gap-2">
-                        <span className="w-2 h-2 bg-lime-acid rounded-full animate-pulse" />
-                        Available for new roles
-                    </div>
-                    <a
-                        href={contactInfo.linkedin}
-                        className="hover:text-white transition-colors"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        LinkedIn
-                    </a>
-                    <a
-                        href={`https://wa.me/${contactInfo.phoneWhatsapp.replace(/\s/g, '')}`}
-                        className="hover:text-white transition-colors flex items-center gap-1"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        <span className="text-lime-acid">WhatsApp:</span> {contactInfo.phoneWhatsapp}
-                    </a>
-                    <a href={`tel:${contactInfo.phoneSG.replace(/\s/g, '')}`} className="hover:text-white transition-colors flex items-center gap-1">
-                        <span className="text-lime-acid">SG:</span> {contactInfo.phoneSG}
-                    </a>
-                    <a href={`mailto:${contactInfo.email}`} className="hover:text-white transition-colors">
-                        {contactInfo.email}
-                    </a>
+            return (
+              <CardTag 
+                key={i} 
+                className={`p-6 bg-white/5 border border-white/[0.09] rounded-[var(--radius)] transition-all hover:bg-white/[0.08] hover:border-white/[0.18] ${isLink ? "block" : ""}`}
+                {...extraProps}
+              >
+                <div className="text-[0.65rem] font-bold tracking-[0.16em] uppercase text-white/35 mb-2">
+                  {card.label}
                 </div>
+                <div className={`text-[0.92rem] font-medium leading-[1.45] flex items-center gap-2 ${card.isAvail ? "text-[var(--green)] ccard-avail-pulse" : "text-white/85"}`}>
+                  {card.val}
+                </div>
+              </CardTag>
+            );
+          })}
+        </div>
+      </section>
 
-                <p className="mt-20 text-xs opacity-30">
-                    © 2025 Mahendra Baghel. Designed with Code.
-                </p>
-            </div>
-
-            {/* Background gradient elements */}
-            <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
-                <div className="w-[500px] h-[500px] bg-lime-acid rounded-full blur-[120px] absolute -top-20 -left-20" />
-                <div className="w-[500px] h-[500px] bg-purple-500 rounded-full blur-[120px] absolute bottom-0 right-0" />
-            </div>
-        </footer>
-    );
+      <footer className="bg-[var(--ink)] border-t border-white/[0.07] px-6 md:px-16 py-7 flex flex-col md:flex-row items-center justify-between gap-4 text-[0.78rem] text-white/30">
+        <span dangerouslySetInnerHTML={{ __html: footerContent.copyright.replace(/\*\*(.*?)\*\*/g, '<strong class="text-white/55">$1</strong>') }} />
+        <span>{footerContent.role}</span>
+        <span>{footerContent.tagline}</span>
+      </footer>
+    </>
+  );
 };
 
 export default Footer;
